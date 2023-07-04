@@ -1,5 +1,4 @@
-import { Box, Flex, Text, IconButton } from "@chakra-ui/react";
-import { FaTwitter, FaGithub, FaDiscord } from "react-icons/fa";
+import { Box, Flex, Text } from "@chakra-ui/react";
 
 export function Footer() {
   return (

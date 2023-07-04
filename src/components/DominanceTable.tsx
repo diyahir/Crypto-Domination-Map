@@ -1,16 +1,10 @@
 import { Table, Tbody, Th, Thead, Tr } from "@chakra-ui/react";
-import { csv } from "d3-fetch";
+
 import { useState, useEffect } from "react";
 import { parseLargeNumber } from "../utils/formating";
 
-export const DominanceTable = () => {
-  const [data, setData] = useState<any[]>([]);
+export const DominanceTable = ({ data }: { data: any[] }) => {
   const [bitcoinRanking, setBitcoinRanking] = useState<number>(0);
-  useEffect(() => {
-    csv("/2023-07-04.csv").then((data) => {
-      setData(data);
-    });
-  }, []);
 
   useEffect(() => {
     setBitcoinRanking(findBitcoinRanking());

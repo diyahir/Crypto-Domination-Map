@@ -1,56 +1,35 @@
-import { useEffect, useState } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
-import { csv } from "d3-fetch";
 import { Tooltip } from "@chakra-ui/react";
 import { parseLargeNumber } from "../utils/formating";
+import { STYLES_MAP } from "./styles/DominanceMap";
+import { CryptoMode } from "../utils/modes";
 
-export const STYLES_MAP = {
-  default: {
-    fill: "#ECEFF1",
-    stroke: "#607D8B",
-    strokeWidth: 0.5,
-    outline: "none",
-  },
-  missing: {
-    fill: "gray",
-    stroke: "#607D8B",
-    strokeWidth: 0.5,
-    outline: "none",
-  },
-  lessThanBitcoin: {
-    fill: "orange",
-    stroke: "#607D8B",
-    strokeWidth: 0.5,
-    outline: "none",
-  },
-  lessThanBitcoinHover: {
-    fill: "#8B4000",
-    stroke: "#607D8B",
-    strokeWidth: 0.5,
-    outline: "none",
-  },
-  pressed: {
-    fill: "#FF5722",
-    stroke: "#607D8B",
-    strokeWidth: 0.5,
-    outline: "none",
-  },
-  hover: {
-    fill: "#607D8B",
-    stroke: "#607D8B",
-    strokeWidth: 0.75,
-    outline: "none",
-  },
-};
+export const DominanceMap = ({
+  data,
+  mode,
+}: {
+  data: any[];
+  mode: CryptoMode;
+}) => {
+  var geographyMode = "Less than Bitcoin";
 
-export const DominanceMap = () => {
-  const [data, setData] = useState<any[]>([]);
+  if (mode === "btc") {
+    geographyMode = "Less than Bitcoin";
+  } else if (mode === "eth") {
+    geographyMode = "Less than ETH";
+  } else if (mode === "both") {
+    geographyMode = "Less than Combined";
+  }
 
-  useEffect(() => {
-    csv("/2023-07-04.csv").then((data) => {
-      setData(data);
-    });
-  }, []);
+  function getFillByMode(m: CryptoMode) {
+    if (m === "btc") {
+      return STYLES_MAP.lessThanBitcoin;
+    } else if (m === "eth") {
+      return STYLES_MAP.lessThanEthereum;
+    } else if (m === "both") {
+      return STYLES_MAP.lessThanBoth;
+    }
+  }
 
   return (
     <ComposableMap
@@ -66,8 +45,7 @@ export const DominanceMap = () => {
               return null;
             }
             const d = data.find((s) => s.ISO === geo.id);
-            const existsAndLessThanBitcoin =
-              d && d["Less than Bitcoin"] === "True";
+            const existsAndLessThanBitcoin = d && d[geographyMode] === "True";
 
             if (!d) {
               return (
@@ -103,7 +81,7 @@ export const DominanceMap = () => {
                     key={geo.rsmKey}
                     geography={geo}
                     style={{
-                      default: STYLES_MAP.lessThanBitcoin,
+                      default: getFillByMode(mode),
                       hover: STYLES_MAP.lessThanBitcoinHover,
                       pressed: STYLES_MAP.pressed,
                     }}
