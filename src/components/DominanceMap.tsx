@@ -53,7 +53,11 @@ export const DominanceMap = () => {
   }, []);
 
   return (
-    <ComposableMap>
+    <ComposableMap
+      projectionConfig={{
+        center: [15, 0],
+      }}
+    >
       <Geographies geography={"geographies.json"}>
         {({ geographies }) =>
           geographies.map((geo) => {

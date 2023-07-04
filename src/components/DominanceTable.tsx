@@ -30,7 +30,7 @@ export const DominanceTable = () => {
   }
 
   return (
-    <Table width={"30%"} variant="simple">
+    <Table size={"md"} width={"30%"} variant="simple">
       <Thead>
         <Tr>
           <Th>Rank</Th>
@@ -66,6 +66,19 @@ export const DominanceTable = () => {
         <Tr>
           <Th colSpan={4}>...</Th>
         </Tr>
+        {data.map((row, ind) => {
+          if (ind === bitcoinRanking - 2) {
+            return (
+              <Tr key={ind}>
+                <Th>{ind + 1}</Th>
+                <Th>{row["Country"]}</Th>
+                <Th>{row["Ticker"]}</Th>
+                <Th>{"$" + parseLargeNumber(row["eUSD"])}</Th>
+              </Tr>
+            );
+          }
+          return null;
+        })}
         <Tr color={"orange"}>
           <Th color={"orange"}>{bitcoinRanking}</Th>
           <Th color={"orange"}>{"Bitcoin"}</Th>
@@ -75,16 +88,6 @@ export const DominanceTable = () => {
 
         {data.map((row, ind) => {
           if (ind < bitcoinRanking + 3 && ind >= bitcoinRanking) {
-            if (row["Country"] === "Zimbabwe") {
-              return (
-                <Tr key={ind}>
-                  <Th>{ind + 1}</Th>
-                  <Th>{row["Country"] + "*"}</Th>
-                  <Th>{row["Ticker"] + "*"}</Th>
-                  <Th>{"$" + parseLargeNumber(row["eUSD"]) + "*"}</Th>
-                </Tr>
-              );
-            }
             return (
               <Tr key={ind}>
                 <Th>{ind + 1}</Th>
