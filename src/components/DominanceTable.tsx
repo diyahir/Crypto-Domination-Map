@@ -1,21 +1,31 @@
 import { Table, Tbody, Th, Thead, Tr } from "@chakra-ui/react";
-
 import { useState, useEffect } from "react";
-import { parseLargeNumber } from "../utils/formating";
+import {
+  getCurrencyColor,
+  getCurrencyTicker,
+  getCurrencyTitle,
+  getFDV,
+  parseLargeNumber,
+} from "../utils/formating";
+import { CryptoMode } from "../utils/modes";
 
-export const DominanceTable = ({ data }: { data: any[] }) => {
-  const [bitcoinRanking, setBitcoinRanking] = useState<number>(0);
+export const DominanceTable = ({
+  data,
+  mode,
+}: {
+  data: any[];
+  mode: CryptoMode;
+}) => {
+  const [ranking, setRanking] = useState<number>(0);
 
   useEffect(() => {
-    setBitcoinRanking(findBitcoinRanking());
-  }, [data]);
+    setRanking(findranking());
+  }, [data, mode]);
 
-  const BTC_FDV = 31000 * 21e6;
-
-  function findBitcoinRanking() {
+  function findranking() {
     let ranking = 0;
     for (let i = 0; i < data.length; i++) {
-      if (data[i]["eUSD"] < BTC_FDV) {
+      if (data[i]["eUSD"] < getFDV(mode)) {
         ranking = i + 1;
         break;
       }
@@ -61,7 +71,7 @@ export const DominanceTable = ({ data }: { data: any[] }) => {
           <Th colSpan={4}>...</Th>
         </Tr>
         {data.map((row, ind) => {
-          if (ind === bitcoinRanking - 2) {
+          if (ind === ranking - 2) {
             return (
               <Tr key={ind}>
                 <Th>{ind + 1}</Th>
@@ -73,15 +83,17 @@ export const DominanceTable = ({ data }: { data: any[] }) => {
           }
           return null;
         })}
-        <Tr color={"orange"}>
-          <Th color={"orange"}>{bitcoinRanking}</Th>
-          <Th color={"orange"}>{"Bitcoin"}</Th>
-          <Th color={"orange"}>{"BTC"}</Th>
-          <Th color={"orange"}>{"$" + parseLargeNumber(BTC_FDV.toString())}</Th>
+        <Tr color={getCurrencyColor(mode)}>
+          <Th color={getCurrencyColor(mode)}>{ranking}</Th>
+          <Th color={getCurrencyColor(mode)}>{getCurrencyTitle(mode)}</Th>
+          <Th color={getCurrencyColor(mode)}>{getCurrencyTicker(mode)}</Th>
+          <Th color={getCurrencyColor(mode)}>
+            {"$" + parseLargeNumber(getFDV(mode).toString())}
+          </Th>
         </Tr>
 
         {data.map((row, ind) => {
-          if (ind < bitcoinRanking + 3 && ind >= bitcoinRanking) {
+          if (ind < ranking + 3 && ind >= ranking) {
             return (
               <Tr key={ind}>
                 <Th>{ind + 1}</Th>

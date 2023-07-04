@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { CryptoMode } from "./utils/modes";
 
 export const App = () => {
-  const [mode, setMode] = useState<CryptoMode>("btc");
+  const [mode, setMode] = useState<CryptoMode>("both");
   const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export const App = () => {
           <Header mode={mode} setMode={setMode} />
           <HStack w="100%" h="100vh" pr={15}>
             <DominanceMap data={data} mode={mode} />
-            <DominanceTable data={data} />
+            <DominanceTable data={data} mode={mode} />
           </HStack>
         </Grid>
         <Footer />
