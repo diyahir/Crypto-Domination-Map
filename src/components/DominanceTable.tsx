@@ -18,10 +18,6 @@ export const DominanceTable = ({
 }) => {
   const [ranking, setRanking] = useState<number>(0);
 
-  useEffect(() => {
-    setRanking(findranking());
-  }, [data, mode]);
-
   function findranking() {
     let ranking = 0;
     for (let i = 0; i < data.length; i++) {
@@ -33,8 +29,12 @@ export const DominanceTable = ({
     return ranking;
   }
 
+  useEffect(() => {
+    setRanking(findranking());
+  }, [data, mode]);
+
   return (
-    <Table size={"md"} width={"30%"} variant="simple">
+    <Table size={["sm", "sm", "sm", "md"]} variant="simple">
       <Thead>
         <Tr>
           <Th>Rank</Th>

@@ -25,12 +25,16 @@ export const Header = ({
   setMode: (m: CryptoMode) => void;
 }) => {
   const [value, setValue] = useState("both");
-
   useEffect(() => {
     setMode(value as CryptoMode);
   }, [value, setMode]);
   return (
-    <HStack w="100%" pr={15}>
+    <Stack
+      pr={15}
+      p={5}
+      display={"flex"}
+      direction={["column-reverse", "column-reverse", "column-reverse", "row"]}
+    >
       <Text fontSize={"2xl"}>
         <Code fontSize={"xl"}>
           {getCurrencyTitle(mode)}
@@ -51,9 +55,10 @@ export const Header = ({
           <Radio colorScheme="purple" value="eth">
             Ethereum
           </Radio>
+          <Spacer />
+          <ColorModeSwitcher justifySelf="flex-end" mr={"40px"} />
         </Stack>
       </RadioGroup>
-      <ColorModeSwitcher justifySelf="flex-end" mr={"40px"} />
-    </HStack>
+    </Stack>
   );
 };

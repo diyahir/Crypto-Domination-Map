@@ -1,4 +1,11 @@
-import { ChakraProvider, Box, Grid, theme, HStack } from "@chakra-ui/react";
+import {
+  ChakraProvider,
+  Box,
+  Grid,
+  HStack,
+  extendTheme,
+  GridItem,
+} from "@chakra-ui/react";
 import { DominanceMap } from "./components/DominanceMap";
 import { DominanceTable } from "./components/DominanceTable";
 import { Footer } from "./components/Footer";
@@ -17,15 +24,32 @@ export const App = () => {
     });
   }, []);
 
+  const theme = extendTheme({
+    config: {
+      useSystemColorMode: true,
+      initialColorMode: "dark",
+    },
+  });
+
+  // background: #141E30;  /* fallback for old browsers */
+  // background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+  // background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   return (
     <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <Header mode={mode} setMode={setMode} />
-          <HStack w="100%" h="100vh" pr={15}>
+      <Box
+        textAlign="center"
+        fontSize="xl"
+        background="linear-gradient(to right, #243B55, #141E30)"
+      >
+        <Header mode={mode} setMode={setMode} />
+        <Grid minH="100vh" p={3} templateColumns={"repeat(3, 1fr)"}>
+          <GridItem colSpan={[3, 3, 3, 2]}>
             <DominanceMap data={data} mode={mode} />
+          </GridItem>
+          <GridItem colSpan={[3, 3, 3, 1]}>
             <DominanceTable data={data} mode={mode} />
-          </HStack>
+          </GridItem>
         </Grid>
         <Footer />
       </Box>
