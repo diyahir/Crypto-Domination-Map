@@ -45,7 +45,7 @@ export function Footer() {
               mx={2}
             />
           </Flex> */}
-          <Text fontSize="sm">
+          <Text fontSize="sm" color={"gray.500"}>
             Data from tradingeconomics and yahoo finance
           </Text>
         </Box>

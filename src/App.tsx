@@ -5,6 +5,7 @@ import {
   HStack,
   extendTheme,
   GridItem,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { DominanceMap } from "./components/DominanceMap";
 import { DominanceTable } from "./components/DominanceTable";
@@ -40,7 +41,10 @@ export const App = () => {
       <Box
         textAlign="center"
         fontSize="xl"
-        background="linear-gradient(to right, #243B55, #141E30)"
+        background={useColorModeValue(
+          "",
+          "linear-gradient(to right, #243B55, #141E30)"
+        )}
       >
         <Header mode={mode} setMode={setMode} />
         <Grid minH="100vh" p={3} templateColumns={"repeat(3, 1fr)"}>
