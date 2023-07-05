@@ -2,7 +2,6 @@ import {
   ChakraProvider,
   Box,
   Grid,
-  HStack,
   extendTheme,
   GridItem,
   useColorModeValue,

@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Link, Text, VStack } from "@chakra-ui/react";
 
 export function Footer() {
   return (
@@ -10,44 +10,28 @@ export function Footer() {
         p={4}
       >
         <Box flex="1 1 100%" mb={{ base: 4, md: 0 }}>
-          {/* <Flex justifyContent="center">
-            <IconButton
-              as="a"
-              href="https://twitter.com/Fluid_Protocol"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Twitter"
-              icon={<FaTwitter />}
-              size="lg"
-              variant="ghost"
-              mx={2}
-            />
-            <IconButton
-              as="a"
-              href="https://github.com/example"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              icon={<FaGithub />}
-              size="lg"
-              variant="ghost"
-              mx={2}
-            />
-            <IconButton
-              as="a"
-              href="https://discord.gg/qGteSSKb"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Discord"
-              icon={<FaDiscord />}
-              size="lg"
-              variant="ghost"
-              mx={2}
-            />
-          </Flex> */}
-          <Text fontSize="sm" color={"gray.500"}>
-            Data from tradingeconomics and yahoo finance
-          </Text>
+          <VStack>
+            <Text fontSize="sm" color={"gray.500"}>
+              Data from{" "}
+              <Link
+                href={
+                  "https://tradingeconomics.com/country-list/money-supply-m2"
+                }
+              >
+                Trading Economics
+              </Link>{" "}
+              and &nbsp;
+              <Link href="https://finance.yahoo.com/currencies">
+                Yahoo Finance
+              </Link>
+            </Text>
+            <Text fontSize="sm" color={"gray.500"}>
+              Donate:{" "}
+              <Link href="https://etherscan.io/address/0x68b621079432B44EECf0cfaA09D81EB5e5239cF8">
+                0x68b621079432B44EECf0cfaA09D81EB5e5239cF8
+              </Link>
+            </Text>
+          </VStack>
         </Box>
       </Flex>
     </Box>
