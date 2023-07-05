@@ -48,7 +48,7 @@ export const Header = ({
       <Spacer />
       <RadioGroup defaultValue={value} value={value} onChange={setValue}>
         <Stack spacing={4} direction="row">
-          <Radio value="both">Both 🤝</Radio>
+          <Radio value="both">Both</Radio>
           <Radio colorScheme="orange" value="btc">
             Bitcoin
           </Radio>
