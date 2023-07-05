@@ -51,7 +51,7 @@ export const App = () => {
           <GridItem colSpan={[3, 3, 3, 2]}>
             <DominanceMap data={data} mode={mode} />
           </GridItem>
-          <GridItem colSpan={[3, 3, 3, 1]}>
+          <GridItem colSpan={[3, 3, 3, 1]} overflow={"scroll"}>
             <DominanceTable data={data} mode={mode} />
           </GridItem>
         </Grid>
