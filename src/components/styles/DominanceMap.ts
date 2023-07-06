@@ -20,8 +20,9 @@ export const STYLES_MAP = {
   lessThanBitcoinHover: {
     fill: "#8B4000",
     stroke: "#607D8B",
-    strokeWidth: 0.5,
+    strokeWidth: 0.75,
     outline: "none",
+    transition: "all 250ms",
   },
   lessThanEthereum: {
     fill: "#647cf6",
@@ -31,15 +32,21 @@ export const STYLES_MAP = {
   },
   lessThanEthereumHover: {
     fill: "#3f51b5",
-    stroke: "#607D8B",
-    strokeWidth: 0.5,
+    strokeWidth: 0.75,
     outline: "none",
+    transition: "all 250ms",
   },
   lessThanBoth: {
     fill: "#14acdc",
     stroke: "#607D8B",
     strokeWidth: 0.5,
     outline: "none",
+  },
+  lessThanBothHover: {
+    fill: "#0d8db8",
+    strokeWidth: 0.75,
+    outline: "none",
+    transition: "all 250ms",
   },
   pressed: {
     fill: "#FF5722",
@@ -49,8 +56,8 @@ export const STYLES_MAP = {
   },
   hover: {
     fill: "#607D8B",
-    stroke: "#607D8B",
     strokeWidth: 0.75,
     outline: "none",
+    transition: "all 250ms",
   },
 };

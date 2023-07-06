@@ -32,20 +32,30 @@ export const DominanceMap = ({
     }
   }
 
-  const [ranking, setRanking] = useState<number>(0);
-
-  function findranking() {
-    let ranking = 0;
-    for (let i = 0; i < data.length; i++) {
-      if (data[i]["eUSD"] < getFDV(mode)) {
-        ranking = i + 1;
-        break;
-      }
+  function getHoverByMode(m: CryptoMode) {
+    if (m === "btc") {
+      return STYLES_MAP.lessThanBitcoinHover;
+    } else if (m === "eth") {
+      return STYLES_MAP.lessThanEthereumHover;
+    } else if (m === "both") {
+      return STYLES_MAP.lessThanBothHover;
     }
-    return ranking;
   }
 
+  const [ranking, setRanking] = useState<number>(0);
+
   useEffect(() => {
+    function findranking() {
+      let ranking = 0;
+      for (let i = 0; i < data.length; i++) {
+        if (data[i]["eUSD"] < getFDV(mode)) {
+          ranking = i + 1;
+          break;
+        }
+      }
+      return ranking;
+    }
+
     setRanking(findranking());
   }, [data, mode]);
 
@@ -111,7 +121,7 @@ export const DominanceMap = ({
                       geography={geo}
                       style={{
                         default: getFillByMode(mode),
-                        hover: STYLES_MAP.lessThanBitcoinHover,
+                        hover: getHoverByMode(mode),
                         pressed: STYLES_MAP.pressed,
                       }}
                     />

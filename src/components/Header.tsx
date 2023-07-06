@@ -1,12 +1,4 @@
-import {
-  Code,
-  HStack,
-  Radio,
-  RadioGroup,
-  Spacer,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Code, Radio, RadioGroup, Spacer, Stack, Text } from "@chakra-ui/react";
 import { ColorModeSwitcher } from "../ColorModeSwitcher";
 import {
   getCurrencyTitle,
