@@ -32,6 +32,16 @@ export const DominanceMap = ({
     }
   }
 
+  function getMissingByMode(m: CryptoMode) {
+    if (m === "btc") {
+      return STYLES_MAP.missingBitcoin;
+    } else if (m === "eth") {
+      return STYLES_MAP.missingEthereum;
+    } else if (m === "both") {
+      return STYLES_MAP.missingBoth;
+    }
+  }
+
   function getHoverByMode(m: CryptoMode) {
     if (m === "btc") {
       return STYLES_MAP.lessThanBitcoinHover;
@@ -97,8 +107,8 @@ export const DominanceMap = ({
                       key={geo.rsmKey}
                       geography={geo}
                       style={{
-                        default: STYLES_MAP.missing,
-                        hover: STYLES_MAP.hover,
+                        default: getMissingByMode(mode),
+                        hover: getHoverByMode(mode),
                         pressed: STYLES_MAP.pressed,
                       }}
                     />

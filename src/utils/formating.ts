@@ -1,6 +1,6 @@
 import { CryptoMode } from "./modes";
-const BTC_FDV = 31000 * 21e6;
-const ETH_FDV = 1950 * 120e6;
+const BTC_FDV = 26000 * 21e6;
+const ETH_FDV = 1650 * 120e6;
 
 export function parseLargeNumber(num: string, includeDecimals = false) {
   const numStr = num.replace(/,/g, "");

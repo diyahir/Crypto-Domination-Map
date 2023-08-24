@@ -11,6 +11,24 @@ export const STYLES_MAP = {
     strokeWidth: 0.5,
     outline: "none",
   },
+  missingBitcoin: {
+    fill: "rgb(225 156 0)",
+    stroke: "#607D8B",
+    strokeWidth: 0.5,
+    outline: "none",
+  },
+  missingEthereum: {
+    fill: "#3f51b5",
+    stroke: "#607D8B",
+    strokeWidth: 0.5,
+    outline: "none",
+  },
+  missingBoth: {
+    fill: "#0d8db8",
+    stroke: "#607D8B",
+    strokeWidth: 0.5,
+    outline: "none",
+  },
   lessThanBitcoin: {
     fill: "orange",
     stroke: "#607D8B",
